@@ -2,7 +2,7 @@
 
 Vim motions for Google search results.
 
-Inspired by DuckDuckGo's vim option for search results as well as [https://github.com/VencislavManoilov/vim-navigation-google/tree/chrome](Vim Navigation for Google), the latter of which had dissatisfactory keybindings and css, resulting in this addon.
+Inspired by DuckDuckGo's vim option for search results as well as [Vim Navigation for Google](https://github.com/VencislavManoilov/vim-navigation-google/tree/chrome), the latter of which had dissatisfactory keybindings and styling, resulting in this addon.
 
 ## Keybindings
 
@@ -11,4 +11,4 @@ Inspired by DuckDuckGo's vim option for search results as well as [https://githu
 - `gg` – Select first result
 - `G` – Select last result
 - `l / Enter` – Load site
-- `L / S-Enter` – Open the selected site in a **new tab**
+- `L / Shift + Enter` – Open the selected site in a **new tab**
