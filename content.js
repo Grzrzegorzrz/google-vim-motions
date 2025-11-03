@@ -15,16 +15,16 @@ let index = 0;
 
 const results = resultsContainer
   ? [...resultsContainer.querySelectorAll("a > h3")]
+      .filter((h3) => {
+        // Ensure it's a visible standard link and not part of special boxes
+        const parent = h3.parentElement.closest("[data-hveid]");
+        return parent && !parent.closest(IGNORE);
+      })
       .map(
         (h3) =>
           h3.parentElement.parentElement.parentElement.parentElement
             .parentElement.parentElement,
       )
-      .filter((a) => {
-        // Ensure it's a visible standard link and not part of special boxes
-        const parent = a.closest("[data-hveid]");
-        return parent && !parent.closest(IGNORE);
-      })
   : [];
 
 function checkSection() {
