@@ -1,0 +1,15 @@
+{
+  "name": "Google Vim Motions",
+  "version": "1.0",
+  "manifest_version": 3,
+
+  "description": "Navigate between Google search results using Vim motions",
+
+  "host_permissions": ["https://google.com/"],
+  "content_scripts": [
+    {
+      "js": ["content.js"],
+      "matches": ["https://www.google.com/*"]
+    }
+  ]
+}
