@@ -1,3 +1,6 @@
+// TODO: don't scroll on load
+// TODO: allow for custom bindings?
+
 const resultsContainer = document.querySelector("#search #rso");
 const searchFormRect = document
   .querySelector("#searchform")

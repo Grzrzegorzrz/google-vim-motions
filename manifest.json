@@ -3,7 +3,7 @@
   "version": "1.0",
   "manifest_version": 3,
 
-  "description": "Navigate between Google search results using Vim motions",
+  "description": "Move between Google search results using Vim motions",
 
   "host_permissions": ["https://google.com/"],
   "content_scripts": [
