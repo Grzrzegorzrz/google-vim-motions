@@ -1,5 +1,7 @@
+// FIX: result "ee" breaks for selecting twitter; try filtering by class?
 // TODO: don't scroll on load
-// TODO: allow for custom bindings?
+// TODO: allow for custom bindings/settings?
+// if so, then have the scrolling on selection change be an option
 
 const resultsContainer = document.querySelector("#search #rso");
 const searchFormRect = document
@@ -55,19 +57,26 @@ function updateSelected(direction) {
       break;
   }
 
-  if (index == 0 || index == bottom)
+  // style
+  results[index].style.setProperty("background-color", "#282828");
+  results[index].querySelector("span > a").focus();
+
+  // scroll
+  if (direction === "first") window.scrollTo(0, 0);
+  else if (direction === "last") window.scrollTo(0, document.body.scrollHeight);
+  else if (index === 0 || index === bottom)
     results[index].scrollIntoView({ behavior: "auto", block: "center" });
   else results[index].scrollIntoView({ behavior: "auto", block: "nearest" });
 
   // move view up by amount the selected is blocked by the top bar
   const selectedTop = results[index].getBoundingClientRect().top;
-  if (selectedTop < topOffset) window.scrollBy(0, selectedTop - topOffset);
-
-  results[index].style.setProperty("background-color", "#282828");
-  results[index].querySelector("span > a").focus();
+  if (selectedTop < topOffset && direction !== "first")
+    window.scrollBy(0, selectedTop - topOffset);
 }
 
-updateSelected();
+// init
+updateSelected("first");
+window.scrollTo(0, 0); // hacky workaround to make the window load at the top of the page
 
 addEventListener("keydown", (e) => {
   const active = document.activeElement;
