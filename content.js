@@ -1,6 +1,8 @@
+// TODO: allow navigating search result table with J and K? ON HOLD
 // TODO: allow for custom bindings/settings?
 // if so, then have the scrolling on selection change be an option
 // option to not skip "videos" section of all?
+// option to change selection color
 
 const resultsContainer = document.querySelector("#search #rso");
 const searchFormRect = document
@@ -10,6 +12,19 @@ const section = document.querySelectorAll('[aria-current="page"]');
 
 const IGNORE = ".related-question-pair, .kp-blk, .g-blk, .xpdopen, .xpd";
 const topOffset = searchFormRect.bottom - searchFormRect.top; // height of top bar
+const defaultDark = "#232326";
+const defaultLight = "#F5F5F5";
+
+// HACK: find Google Search background color
+let selectColor;
+const bgColor = getComputedStyle(document.body).backgroundColor;
+if (bgColor === "rgb(255, 255, 255)") selectColor = defaultLight;
+else
+  selectColor =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? defaultDark
+      : defaultLight;
 
 let prevKeyG = false;
 let index = 0;
@@ -61,7 +76,7 @@ function updateSelected(direction) {
   }
 
   // style
-  results[index].style.setProperty("background-color", "#282828");
+  results[index].style.setProperty("background-color", selectColor);
   const link = results[index];
   link.style.caretColor = "transparent";
   link.querySelector("span > a").focus();
