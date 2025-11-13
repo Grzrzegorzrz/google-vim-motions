@@ -1,5 +1,7 @@
 # Vim for Google Search Results
 
+[![Firefox Add-on](https://img.shields.io/amo/v/google-vim-motions)](https://addons.mozilla.org/en-CA/firefox/addon/google-vim-motions)
+
 Vim motions for Google search results.
 
 Inspired by DuckDuckGo's vim option for search results as well as [Vim Navigation for Google](https://github.com/VencislavManoilov/vim-navigation-google/tree/chrome), the latter of which had dissatisfactory keybindings and styling, resulting in this addon.
