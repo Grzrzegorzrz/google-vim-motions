@@ -7,6 +7,12 @@
 // preferences
 const defaultLight = "#F5F5F5";
 const defaultColor = undefined;
+const gScroll = "smooth";
+const jkScroll = "instant";
+
+// strat for handling custom key sequences:
+// - simple string match; clear string on command input or delay
+// - vim way: pause if ambigious, then proceed if no response?
 
 const resultsContainer = document.querySelector("#search #rso");
 const searchFormRect = document
@@ -91,20 +97,31 @@ function updateSelected(direction) {
   // style
   selected.style.setProperty("background-color", selectColor);
   selected.style.caretColor = "transparent";
-  selected.querySelector("span > a").focus();
+  selected.querySelector("span > a").focus({ preventScroll: true });
 
   // scroll
-  if (direction === "first") window.scrollTo(0, 0);
-  else if (direction === "last") window.scrollTo(0, document.body.scrollHeight);
+  if (direction === "first")
+    window.scrollTo({
+      behavior: gScroll,
+      top: 0,
+    });
+  else if (direction === "last")
+    window.scrollTo({
+      behavior: gScroll,
+      top: document.body.scrollHeight,
+    });
   else
     selected.scrollIntoView({
-      behavior: "auto",
+      behavior: jkScroll,
       block: index === 0 || index === bottom ? "center" : "nearest",
     });
 
   // move view up by amount the selected is blocked by the top bar
   if (selectedTop < topOffset && direction !== "first")
-    window.scrollBy(0, selectedTop - topOffset);
+    window.scrollBy({
+      behavior: jkScroll,
+      top: selectedTop - topOffset,
+    });
 }
 
 addEventListener("keydown", (e) => {
