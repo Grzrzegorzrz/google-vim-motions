@@ -5,7 +5,7 @@
 
   "description": "Move between Google search results using Vim motions",
 
-  "host_permissions": ["https://google.com/"],
+  "host_permissions": ["https://www.google.com/"],
   "content_scripts": [
     {
       "matches": ["https://www.google.com/*"],
