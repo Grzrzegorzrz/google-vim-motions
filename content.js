@@ -4,14 +4,19 @@
 // option to not skip "videos" section of all?
 // option to change selection color
 
-// preferences
+// -- preferences --
 const defaultLight = "#F5F5F5";
 const defaultColor = undefined;
+// scroll behavior
 const gScroll = "smooth";
 const jkScroll = "instant";
+const resultScroll = "nearest";
+// selected result styling
+const selectExtrude = "10px";
 
 // strat for handling custom key sequences:
 // - simple string match; clear string on command input or delay
+//   - maybe match from end?
 // - vim way: pause if ambigious, then proceed if no response?
 
 const resultsContainer = document.querySelector("#search #rso");
@@ -74,7 +79,9 @@ function updateSelected(direction) {
   const bottom = results.length - 1;
 
   // remove colour from curr selection before changing selection
-  results[index].style.setProperty("background-color", "initial");
+  results[index].style.backgroundColor = "initial";
+  results[index].style.boxShadow = "initial";
+  results[index].style.borderRadius = "intial";
 
   switch (direction) {
     case "down":
@@ -95,7 +102,8 @@ function updateSelected(direction) {
   const selectedTop = selected.getBoundingClientRect().top;
 
   // style
-  selected.style.setProperty("background-color", selectColor);
+  selected.style.backgroundColor = selectColor;
+  selected.style.boxShadow = `0 0 0 ${selectExtrude} ${selectColor}`;
   selected.style.caretColor = "transparent";
   selected.querySelector("span > a").focus({ preventScroll: true });
 
@@ -113,7 +121,7 @@ function updateSelected(direction) {
   else
     selected.scrollIntoView({
       behavior: jkScroll,
-      block: index === 0 || index === bottom ? "center" : "nearest",
+      block: index === 0 || index === bottom ? "center" : resultScroll,
     });
 
   // move view up by amount the selected is blocked by the top bar
