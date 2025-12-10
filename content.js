@@ -5,7 +5,6 @@
 // option to change selection color
 
 // -- preferences --
-const defaultLight = "#F5F5F5";
 const defaultColor = undefined;
 // scroll behavior
 const gScroll = "smooth";
@@ -28,7 +27,7 @@ const section = document.querySelectorAll('[aria-current="page"]');
 
 const IGNORE = ".related-question-pair, .kp-blk, .g-blk, .xpdopen, .xpd";
 const topOffset = searchFormRect.bottom - searchFormRect.top; // height of top bar
-const selectColor = defaultColor ? defaultColor : themeColor();
+const selectColor = defaultColor || themeColor();
 
 // array of all results
 const results = resultsContainer
@@ -53,11 +52,9 @@ let index = 0;
 
 function themeColor() {
   const bgColor = getComputedStyle(document.body).backgroundColor;
-  if (bgColor === "rgb(255, 255, 255)") return defaultLight;
 
   const currRGB = bgColor.match(/\d+/g);
-
-  // rough interpretation of if light mode or dark mode
+  // interpret if light mode or dark mode
   const increment = parseInt(currRGB[0]) < 230 ? 10 : -10;
 
   // Convert strings to numbers and increment each by 10
