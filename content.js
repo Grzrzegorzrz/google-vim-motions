@@ -13,6 +13,7 @@ const jkScroll = "instant";
 const resultScroll = "nearest";
 // selected result styling
 const selectExtrude = "10px";
+const selectRounding = "5px";
 
 // strat for handling custom key sequences:
 // - simple string match; clear string on command input or delay
@@ -104,6 +105,7 @@ function updateSelected(direction) {
   // style
   selected.style.backgroundColor = selectColor;
   selected.style.boxShadow = `0 0 0 ${selectExtrude} ${selectColor}`;
+  selected.style.borderRadius = selectRounding;
   selected.style.caretColor = "transparent";
   selected.querySelector("span > a").focus({ preventScroll: true });
 
